@@ -1,0 +1,10 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "webpackServerPort": null,
+  "expoServerNgrokUrl": "https://t6-e5e.anonymous.foodinventory.exp.direct",
+  "packagerNgrokUrl": "https://packager.t6-e5e.anonymous.foodinventory.exp.direct",
+  "ngrokPid": 16160,
+  "packagerPid": null
+}
