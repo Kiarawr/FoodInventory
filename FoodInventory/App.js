@@ -8,8 +8,10 @@
 
 import 'react-native-gesture-handler';
 import React from 'react';
-import type {Node} from 'react';
+//import type {Node} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 import {
   SafeAreaView,
@@ -17,10 +19,13 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  Button,
   useColorScheme,
   View,
 } from 'react-native';
 
+
+/*
 import {
   Colors,
   DebugInstructions,
@@ -28,7 +33,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+*/
 
+const Stack = createStackNavigator();
+
+/*
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -54,7 +63,44 @@ const Section = ({children, title}): Node => {
     </View>
   );
 };
+*/
 
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+
+        <Stack.Screen name="Profile" component = {ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function HomeScreen({navigation}) {
+  return (
+    <Button
+      title="Go to Andrew's Profile"
+      onPress={() =>
+        navigation.navigate('Profile', { name: 'Andrew' })
+      }
+    />
+  );
+}
+
+function ProfileScreen({navigation, route}) {
+  return (
+    <Text>This is {route.params.name}'s profile</Text>
+  )
+}
+
+/*
+const ProfileScreen = ({ navigation, route }) => {
+  return <Text>This is {route.params.name}'s profile</Text>;
+};
+*/
+
+/*
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -116,5 +162,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
+*/
 
 export default App;
