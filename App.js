@@ -27,18 +27,25 @@
  } from 'react-native';
  
  import {
-   Icon
+   Icon,
+   SearchBar,
  } from 'react-native-elements';
  
  const Stack = createStackNavigator();
  const Tab = createBottomTabNavigator();
  
+
+
  function App() {
    return (
      <NavigationContainer>
        <Tab.Navigator>
-  
-        <Tab.Screen name = "Home" component={HomeScreen} />
+
+        <Tab.Screen name = "Home" component = {HomeScreen} options = {{
+          tabBarIcon:() => (
+          <Icon name="home-outline" type="ionicon"/>
+          )
+        }}/>
         <Tab.Screen name="List" component = {ListScreen} />
 
        </Tab.Navigator>
