@@ -33,8 +33,6 @@
  
  const Stack = createStackNavigator();
  const Tab = createBottomTabNavigator();
- 
-
 
  function App() {
   
@@ -44,19 +42,19 @@
 
         <Tab.Screen name = "Home" component = {HomeScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="home-outline" type="ionicon" color = {focused ? "#8bafd6" : "#DDE2E9"}/>
+            return <Icon name="home-outline" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
           }
         }}/>
 
         <Tab.Screen name="List" component = {ListScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="create-outline" type="ionicon" color = {focused ? "#8bafd6" : "#DDE2E9"}/>
+            return <Icon name="create-outline" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
           }
         }} />
 
         <Tab.Screen name="Scan" component = {ScanScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="qr-code-outline" type="ionicon" color = {focused ? "#8bafd6" : "#DDE2E9"}/>
+            return <Icon name="qr-code-outline" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
           }
         }} />
 
@@ -87,16 +85,23 @@
    return (
      <React.Fragment>
       <SafeAreaView style = {styles.container}>
-        
+
         <SafeAreaView style = {styles.header}>
-        <Calendar style = {styles.calendar} theme = {{ 
-          calendarBackground: "white",
-          arrowColor: "#8bafd6",
-          dayTextColor: "#2d4150",
-          monthTextColor: "black",
-          todayTextColor: "#8bafd6",
+          <Text style = {styles.headerTitle}> Food Inventory </Text>
+        </SafeAreaView>
+
+        <SafeAreaView style = {styles.calendarContainer}>
+          <Calendar style = {styles.calendar} theme = {{ 
+            calendarBackground: "white",
+            arrowColor: "#8bafd6",
+            dayTextColor: "#2d4150",
+            monthTextColor: "black",
+            todayTextColor: "#8bafd6",
+            textMonthFontFamily: "avenir",
+            textDayFontFamily: "avenir",
           }}/>
         </SafeAreaView>
+
       </SafeAreaView>
      </React.Fragment>
    );
@@ -123,16 +128,27 @@
     flex: 1,
   },
   header: {
-    flexDirection: "row",
+    height: 50,
     backgroundColor: "white",
+    borderBottomColor: "#eeeeee",
+    borderBottomWidth: 2,
     justifyContent: "center",
-    paddingTop: 20,
-    paddingBottom: 30,
-    borderBottomRightRadius: 80,
-    borderBottomLeftRadius: 80,
+    alignItems: "center",
+  },
+  headerTitle: {
+    fontFamily: "avenir",
+    fontSize: 16,
+  },
+  calendarContainer: {
+    alignItems: "center",
   },
   calendar: {
-    width: 280,
+    width: 320,
+    margin: 10,
+    paddingBottom: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
+    borderRadius: 30,
   },
   button: {
     width: 100,
