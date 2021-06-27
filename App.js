@@ -12,7 +12,7 @@
  import { NavigationContainer, useIsFocused } from '@react-navigation/native';
  import { createStackNavigator } from '@react-navigation/stack';
  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
- //import { Calendar } from 'react-native-calendars';
+ import { Calendar } from 'react-native-calendars';
  
  import {
    SafeAreaView,
@@ -40,23 +40,23 @@
   
    return (
      <NavigationContainer>
-       <Tab.Navigator tabBarOptions = {{activeTintColor: "#7EA3CC"}} >
+       <Tab.Navigator tabBarOptions = {{activeTintColor: "#8bafd6"}} >
 
         <Tab.Screen name = "Home" component = {HomeScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="home-outline" type="ionicon" color = {focused ? "#7EA3CC" : "#DDE2E9"}/>
+            return <Icon name="home-outline" type="ionicon" color = {focused ? "#8bafd6" : "#DDE2E9"}/>
           }
         }}/>
 
         <Tab.Screen name="List" component = {ListScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="create-outline" type="ionicon" color = {focused ? "#7EA3CC" : "#DDE2E9"}/>
+            return <Icon name="create-outline" type="ionicon" color = {focused ? "#8bafd6" : "#DDE2E9"}/>
           }
         }} />
 
         <Tab.Screen name="Scan" component = {ScanScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="qr-code-outline" type="ionicon" color = {focused ? "#7EA3CC" : "#DDE2E9"}/>
+            return <Icon name="qr-code-outline" type="ionicon" color = {focused ? "#8bafd6" : "#DDE2E9"}/>
           }
         }} />
 
@@ -87,10 +87,16 @@
    return (
      <React.Fragment>
       <SafeAreaView style = {styles.container}>
-
-        <View style = {styles.header}>
-          
-        </View>
+        
+        <SafeAreaView style = {styles.header}>
+        <Calendar style = {styles.calendar} theme = {{ 
+          calendarBackground: "white",
+          arrowColor: "#8bafd6",
+          dayTextColor: "#2d4150",
+          monthTextColor: "black",
+          todayTextColor: "#8bafd6",
+          }}/>
+        </SafeAreaView>
       </SafeAreaView>
      </React.Fragment>
    );
@@ -117,11 +123,16 @@
     flex: 1,
   },
   header: {
-    height: 300,
     flexDirection: "row",
-    backgroundColor: "#7EA3CC",
+    backgroundColor: "white",
     justifyContent: "center",
-    alignItems: "center",
+    paddingTop: 20,
+    paddingBottom: 30,
+    borderBottomRightRadius: 80,
+    borderBottomLeftRadius: 80,
+  },
+  calendar: {
+    width: 280,
   },
   button: {
     width: 100,
@@ -130,7 +141,7 @@
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#7EA3CC",
+    backgroundColor: "#8bafd6",
     justifyContent: "center",
   },
   buttonText: {
@@ -140,7 +151,7 @@
     textAlign: "center",
   },
   navIconFocused: {
-    color: "#7EA3CC",
+    color: "#8bafd6",
   }
  });
  
