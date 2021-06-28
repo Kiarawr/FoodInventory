@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494687983917",
+    "project_id": "food-inventory-baf7c",
+    "storage_bucket": "food-inventory-baf7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494687983917:android:41e3163b70b8d61e2cdba4",
+        "android_client_info": {
+          "package_name": "com.foodinventory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494687983917-50a00d1uhckdlk4undqafvfofftja9uk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOcJ4P8qDxaSjUUGH1pSlL-PW_sJsnq_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494687983917-50a00d1uhckdlk4undqafvfofftja9uk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
