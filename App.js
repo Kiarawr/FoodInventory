@@ -7,7 +7,7 @@
  */
 
  import 'react-native-gesture-handler';
- import React, {useState, useEffect} from 'react';
+ import React from 'react';
  //import type {Node} from 'react';
  import { NavigationContainer, useIsFocused } from '@react-navigation/native';
  import { createStackNavigator } from '@react-navigation/stack';
@@ -37,24 +37,27 @@
  function App() {
   
    return (
+
      <NavigationContainer>
+       <StatusBar barStyle="dark-content" backgroundColor="white"/>
+
        <Tab.Navigator tabBarOptions = {{activeTintColor: "#8bafd6"}} >
 
         <Tab.Screen name = "Home" component = {HomeScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="home-outline" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
+            return <Icon name="home" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
           }
         }}/>
 
         <Tab.Screen name="List" component = {ListScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="create-outline" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
+            return <Icon name="create" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
           }
         }} />
 
         <Tab.Screen name="Scan" component = {ScanScreen} options = {{
           tabBarIcon: ({focused}) => {
-            return <Icon name="qr-code-outline" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
+            return <Icon name="qr-code" type="ionicon" color = {focused ? "#8bafd6" : "#b6c1cd"}/>
           }
         }} />
 
@@ -68,26 +71,13 @@
  
  function HomeScreen({navigation}) {
    const handlePress = () => navigation.navigate('List')
-   
-   /*
-   const [currentDate, setCurrentDate] = useState('');
-
-   useEffect(() => {
-     var date = new Date().getDate(); //Current Date
-     var month = new Date().getMonth() + 1; //Current Month
-     var year = new Date().getFullYear(); //Current Year
-     setCurrentDate(
-       date + '/' + month + '/' + year
-     );
-   }, []);
-   */
  
    return (
      <React.Fragment>
       <SafeAreaView style = {styles.container}>
 
         <SafeAreaView style = {styles.header}>
-          <Text style = {styles.headerTitle}> Food Inventory </Text>
+          <Text style = {styles.headerTitle}> Home </Text>
         </SafeAreaView>
 
         <SafeAreaView style = {styles.calendarContainer}>
@@ -110,15 +100,25 @@
  function ListScreen({navigation}) {
    return (
     <SafeAreaView style = {styles.container}>
-     <Text> put list here</Text>
+
+      <SafeAreaView style = {styles.header}>
+          <Text style = {styles.headerTitle}> List </Text>
+      </SafeAreaView>
+
     </SafeAreaView>
    )
  }
 
  function ScanScreen({navigation}) {
   return (
-   <SafeAreaView style = {styles.container}>
-    <Text> scan or add items </Text>
+    <SafeAreaView style = {styles.container}>
+
+      <SafeAreaView style = {styles.header}>
+        <Text style = {styles.headerTitle}> Scan </Text>
+      </SafeAreaView>
+
+      <Text> scan or add items </Text>
+
    </SafeAreaView>
   )
 }
@@ -128,11 +128,11 @@
     flex: 1,
   },
   header: {
-    height: 50,
+    height: 35,
     backgroundColor: "white",
     borderBottomColor: "#eeeeee",
     borderBottomWidth: 2,
-    justifyContent: "center",
+
     alignItems: "center",
   },
   headerTitle: {
