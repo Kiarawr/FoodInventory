@@ -1,9 +1,14 @@
-import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { SafeAreaView, Text, StyleSheet, Button} from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import { AuthContext } from '../navigation/AuthProvider';
+
+
 
 function HomeScreen() {
-  
+  const {user, logout} = useContext(AuthContext);
+  console.log("home");
+
     return (
       <React.Fragment>
        <SafeAreaView style = {styles.container}>
@@ -23,6 +28,11 @@ function HomeScreen() {
              textDayFontFamily: "avenir",
            }}/>
          </SafeAreaView>
+
+         <Button 
+            title = "Log Out"
+            onPress = {() => logout()}
+         />
  
        </SafeAreaView>
       </React.Fragment>

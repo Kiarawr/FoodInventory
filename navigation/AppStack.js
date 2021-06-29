@@ -8,14 +8,16 @@ import {
     Icon,
 } from 'react-native-elements';
 
-import HomeScreen from './screens/HomeScreen';
-import ListScreen from './screens/ListScreen';
-import ScanScreen from './screens/ScanScreen';
+import HomeScreen from '../screens/HomeScreen';
+import ListScreen from '../screens/ListScreen';
+import ScanScreen from '../screens/ScanScreen';
 
 const Tab = createBottomTabNavigator();
 
-function Tabs() {
+function AppStack() {
+  console.log("app stack");
     return(
+      
       <React.Fragment>
        <StatusBar barStyle="dark-content" backgroundColor="white"/>
 
@@ -44,6 +46,6 @@ function Tabs() {
     );
 }
 
-export default Tabs;
+export default AppStack;
 
 
