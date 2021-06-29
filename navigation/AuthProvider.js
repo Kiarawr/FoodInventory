@@ -13,7 +13,7 @@ export const AuthProvider = ({children}) => {
                 setUser,
                 login: async (email , password) => {
                     try {
-                        await auth().signInWithEmailandPassword(email , password);
+                        await auth().signInWithEmailAndPassword(email , password);
                     }
                     catch (e) {
                         console.log(e); 
