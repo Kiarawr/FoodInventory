@@ -6,22 +6,25 @@ import {
 } from 'react-native-elements';
 
 function FormInput({labelValue, placeholderText, iconType, ...rest}){
-    return (
-        <View style={styles.inputContainer}>
-        <View style={styles.iconStyle}>
-            <Icon name={iconType} type="ionicon" color="black" />
-        </View>
-        <TextInput
-            value={labelValue}
-            style={styles.input}
-            numberOfLines={1}
-            placeholder={placeholderText}
-            placeholderTextColor="#666"
-            //secureTextEntry = {isPassword}
-            {...rest}
-        />
-        </View>
-    )
+  return (
+    
+    <View style={styles.inputContainer}>
+
+      <View style={styles.iconStyle}>
+          <Icon name={iconType} type="ionicon" color="black" />
+      </View>
+
+      <TextInput
+        value={labelValue}
+        style={styles.input}
+        numberOfLines={1}
+        placeholder={placeholderText}
+        placeholderTextColor="#666"
+        {...rest}
+      />
+      
+    </View>
+  )
 }
 
 export default FormInput;
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
       width: '70%',
       height: 50,            //change
       borderColor: '#ccc',
-      borderRadius: 3,
+      borderRadius: 30,
       borderWidth: 1,
       flexDirection: 'row',
       alignItems: 'center',
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
       padding: 10,
       flex: 1,
       fontSize: 16,
-      fontFamily: 'avenir',
+      fontFamily: "helvetica",
       color: '#333',
       justifyContent: 'center',
       alignItems: 'center',
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
       width: 200,           //change
       height: 30,                   //change
       fontSize: 16,
-      borderRadius: 8,
+      borderRadius: 30,
       borderWidth: 1,
     },
 });

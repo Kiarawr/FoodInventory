@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
       alignItems: "center",
     },
     headerTitle: {
-      fontFamily: "avenir",
       fontSize: 16,
     }
 });

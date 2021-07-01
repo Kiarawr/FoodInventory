@@ -6,7 +6,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 
 
 function HomeScreen() {
-  const {user, logout} = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   console.log("home");
 
     return (
@@ -24,8 +24,6 @@ function HomeScreen() {
              dayTextColor: "#2d4150",
              monthTextColor: "black",
              todayTextColor: "#8bafd6",
-             textMonthFontFamily: "avenir",
-             textDayFontFamily: "avenir",
            }}/>
          </SafeAreaView>
 
@@ -54,7 +52,6 @@ const styles = StyleSheet.create({
       alignItems: "center",
     },
     headerTitle: {
-      fontFamily: "avenir",
       fontSize: 16,
     },
     calendarContainer: {

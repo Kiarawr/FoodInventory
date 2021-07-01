@@ -1,24 +1,5 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-//import Tabs from './navigation/AppStack';
 import Providers from "./navigation/index";
-import AuthStack from "./navigation/AuthStack";
-import AppStack from './navigation/AppStack';
-import LoginScreen from './screens/LoginScreen';
-import SignUpScreen from './screens/SignUpScreen';
-
-/*
-function App() {
-  return (
-    <SignUpScreen/>
-  );
-}
-
-export default App;
-*/
-
 
 function App() {
   return <Providers/>;
@@ -28,22 +9,6 @@ export default App;
 
 
 /*
-function App(){
-  return(
-    <NavigationContainer>
-      <AppStack/>
-    </NavigationContainer>
-  );
-}
-
-export default App;
-
-*/
-/*
- import 'react-native-gesture-handler';
- import { NavigationContainer } from '@react-navigation/native';
- import { createStackNavigator } from '@react-navigation/stack';
- 
  import {
    SafeAreaView,
    ScrollView,
