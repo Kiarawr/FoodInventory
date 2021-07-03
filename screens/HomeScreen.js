@@ -15,7 +15,7 @@ function HomeScreen() {
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
         
         <Text category='h1' style={{marginLeft: 40}}>
-              OVERVIEW
+              Overview
         </Text>
 
         <Calendar

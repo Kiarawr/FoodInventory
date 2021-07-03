@@ -1,29 +1,31 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet} from 'react-native';
+import { View, StyleSheet} from 'react-native';
 import { Icon } from 'react-native-elements';
+import { Text, Layout, Button } from '@ui-kitten/components';
 
 function OnBoardingScreen({navigation}){
     return (
-        <View style = {styles.container}>
-
+        <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <View style = {styles.topContainer}>
-                <Icon name = "cart" type = "ionicon" size = {40} color = "black"></Icon>
-                <Text style = {styles.title}>Food Inventory</Text>
+                <Icon name = "cart" type = "ionicon" size = {40} color = "white"></Icon>
+                <Text category={'h1'}>
+                    Food Inventory
+                    </Text>
             </View>
 
             <View style = {styles.buttonContainer}>
-                <Pressable
+                <Button
                         style = {styles.button} 
                         onPress = {() => navigation.navigate("SignUp")}>
                         <Text style = {styles.buttonText}>SIGN UP</Text>
-                </Pressable>
-                <Pressable
+                </Button>
+                <Button
                         style = {styles.button} 
                         onPress = {() => navigation.navigate("Login")}>
                         <Text style = {styles.buttonText}>LOGIN</Text>
-                </Pressable>
+                </Button>
             </View>
-        </View>
+        </Layout>
     );
 
 }
@@ -51,14 +53,12 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 45,
-        width: '100%',
+        width: '60%',
         paddingVertical: 5,
         paddingHorizontal: 32,
-        borderRadius: 30,
         marginTop: 5,
         marginBottom: 10,
         elevation: 3,
-        backgroundColor: "#8bafd6",
         justifyContent: "center",
         alignItems: "center",
     },

@@ -1,8 +1,9 @@
 import React, { useState, useContext }from 'react';
-import { View, Text, Pressable, StyleSheet} from 'react-native';
+import { View, Pressable, StyleSheet} from 'react-native';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
 import 'react-native-gesture-handler';
+import { Text, Layout, Button } from '@ui-kitten/components';
 
 
 function LoginScreen ({navigation}){
@@ -12,40 +13,43 @@ function LoginScreen ({navigation}){
     const { login }= useContext(AuthContext);
 
     return (
-        <View style = {styles.container}>
+        <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 
-            <View style = {styles.topContainer}>
-                <Text style = {styles.title}>Log In</Text>
-            </View>
+            <View style = {styles.container}>
 
-            <View style = {styles.botContainer}>
+                <View style = {styles.topContainer}>
+                    <Text category = {'h1'}>Log In</Text>
+                </View>
 
-                <FormInput 
-                    labelValue={email}
-                    onChangeText = {(userEmail) => setEmail(userEmail)}
-                    placeholderText = "email"
-                    iconType = "mail"               //change
-                    autoCapitalize = "none"
-                />
-                <FormInput 
-                    labelValue={password}
-                    onChangeText = {(userPassword) => setPassword(userPassword)}
-                    placeholderText = "password"
-                    iconType = "lock-closed"       //change
-                    autoCapitalize = "none"
-                    secureTextEntry = {true}
-                    fontFamily = "helvetica"
-                />
+                <View style = {styles.botContainer}>
+
+                    <FormInput 
+                        labelValue={email}
+                        onChangeText = {(userEmail) => setEmail(userEmail)}
+                        placeholderText = "email"
+                        iconType = "mail"               //change
+                        autoCapitalize = "none"
+                    />
+                    <FormInput 
+                        labelValue={password}
+                        onChangeText = {(userPassword) => setPassword(userPassword)}
+                        placeholderText = "password"
+                        iconType = "lock-closed"       //change
+                        autoCapitalize = "none"
+                        secureTextEntry = {true}
+                        fontFamily = "helvetica"
+                    />
+                    
+                    <Button 
+                        style = {styles.button}
+                        onPress = {() => login(email, password)}>
+                        <Text style = {styles.buttonText}>LOG IN</Text>
+                    </Button>
+
+                </View>
                 
-                <Pressable 
-                    style = {styles.button}
-                    onPress = {() => login(email, password)}>
-                    <Text style = {styles.buttonText}>LOG IN</Text>
-                </Pressable>
-
             </View>
-            
-        </View>
+        </Layout>
     )
 }
 
@@ -70,18 +74,12 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 45,
-        width: '70%',
         paddingVertical: 5,
         paddingHorizontal: 32,
-        borderRadius: 30,
         marginTop: 5,
         marginBottom: 10,
         elevation: 3,
-        backgroundColor: "#8bafd6",
         justifyContent: "center",
         alignItems: "center",
     },
-    buttonText: {
-        color: "white",
-    }
 });

@@ -1,8 +1,11 @@
 {
     "strict": {
-      "text-font-family": "FuturaPT-Medium",
+      "text-font-family": "FuturaPT-Book",
+      "text-heading-1-font-family": "FuturaPT-Demi",
       "text-heading-1-font-size": 36,
-      "text-heading-1-letter-spacing": 7
+      "text-heading-1-letter-spacing": 1,
+      "text-heading-2-font-size": 28,
+      "text-heading-2-font-family": "FuturaPT-Medium"
       },
       "components": {
         "Text": {

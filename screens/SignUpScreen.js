@@ -1,7 +1,8 @@
 import React, { useState, useContext }from 'react';
-import { View, Text, Pressable, StyleSheet} from 'react-native';
+import { View, Pressable, StyleSheet} from 'react-native';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
+import { Text, Layout, Button } from '@ui-kitten/components';
 
 function SignUpScreen({navigation}) {
     
@@ -12,10 +13,12 @@ function SignUpScreen({navigation}) {
     const { register }= useContext(AuthContext);
 
     return (
+        <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+
         <View style = {styles.container}>
            
             <View style = {styles.topContainer}>
-                <Text style = {styles.title}>Create an account</Text>
+                <Text category = {'h1'}>Create an Account</Text>
             </View>
 
             <View style = {styles.botContainer}>
@@ -34,7 +37,6 @@ function SignUpScreen({navigation}) {
                     iconType = "lock-closed"       //change
                     autoCapitalize = "none"
                     secureTextEntry = {true}
-                    fontFamily = "helvetica"
                 />
 
                 <FormInput 
@@ -44,17 +46,17 @@ function SignUpScreen({navigation}) {
                     iconType = "lock-closed"       //change
                     autoCapitalize = "none"
                     secureTextEntry = {true}
-                    fontFamily = "helvetica"
                 />
 
-                <Pressable 
+                <Button 
                     style = {styles.button}
                     onPress = {() => register(email, password)}>
-                    <Text style = {styles.buttonText}>SIGN UP</Text>
-                </Pressable>
+                    <Text style = {styles.buttonText}>Sign Up</Text>
+                </Button>
 
             </View>
         </View>
+        </Layout>
     );
 
 }
@@ -70,28 +72,19 @@ const styles = StyleSheet.create({
     topContainer: {
         marginBottom: 40,
     },
-    title: {
-        fontSize: 24,
-        fontFamily: "helvetica",
-    },
+
     botContainer: {
         width: "100%",
         alignItems: "center",
     },
     button: {
         height: 45,
-        width: '70%',
         paddingVertical: 5,
         paddingHorizontal: 32,
-        borderRadius: 30,
         marginTop: 5,
         marginBottom: 10,
         elevation: 3,
-        backgroundColor: "#8bafd6",
         justifyContent: "center",
         alignItems: "center",
     },
-    buttonText: {
-        color: "white",
-    }
 });
