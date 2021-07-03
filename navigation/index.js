@@ -8,7 +8,6 @@ function Providers () {
         <AuthProvider>
             <Routes/>
         </AuthProvider>
-
     );
 }
 

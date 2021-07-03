@@ -1,68 +1,37 @@
-import React, { useContext } from 'react';
-import { SafeAreaView, Text, StyleSheet, Button} from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import React, { useContext , View } from 'react';
+// import { SafeAreaView, \ StyleSheet, Button} from 'react-native';
+// import { Calendar } from 'react-native-calendars';
 import { AuthContext } from '../navigation/AuthProvider';
+import { Calendar, Text, Layout, Button } from '@ui-kitten/components';
 
 
 
 function HomeScreen() {
   const { logout } = useContext(AuthContext);
-  console.log("home");
+  const [date, setDate] = React.useState(new Date());
 
-    return (
-      <React.Fragment>
-       <SafeAreaView style = {styles.container}>
- 
-         <SafeAreaView style = {styles.header}>
-           <Text style = {styles.headerTitle}> Home </Text>
-         </SafeAreaView>
- 
-         <SafeAreaView style = {styles.calendarContainer}>
-           <Calendar style = {styles.calendar} theme = {{ 
-             calendarBackground: "white",
-             arrowColor: "#8bafd6",
-             dayTextColor: "#2d4150",
-             monthTextColor: "black",
-             todayTextColor: "#8bafd6",
-           }}/>
-         </SafeAreaView>
+  return (
+    <React.Fragment>
+      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
+        
+        <Text category='h1' style={{marginLeft: 40}}>
+              OVERVIEW
+        </Text>
 
-         <Button 
-            title = "Log Out"
-            onPress = {() => logout()}
-         />
- 
-       </SafeAreaView>
-      </React.Fragment>
-    );
-}
+        <Calendar
+          style={{alignSelf: 'center'}}
+          date={date}
+          onSelect={nextDate => setDate(nextDate)}
+        />
+        
+        <Button
+          onPress = {() => logout()}
+          style={{marginLeft: 40}}>
+          Log Out
+         </Button>
 
+      </Layout>
+    </React.Fragment>
+  );
+};
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    header: {
-      height: 35,
-      backgroundColor: "white",
-      borderBottomColor: "#eeeeee",
-      borderBottomWidth: 2,
-  
-      alignItems: "center",
-    },
-    headerTitle: {
-      fontSize: 16,
-    },
-    calendarContainer: {
-      alignItems: "center",
-    },
-    calendar: {
-      width: 320,
-      margin: 10,
-      paddingBottom: 10,
-      paddingLeft: 25,
-      paddingRight: 25,
-      borderRadius: 30,
-    },
-});

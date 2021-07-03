@@ -1,0 +1,31 @@
+{
+    "strict": {
+      "text-font-family": "FuturaPT-Medium",
+      "text-heading-1-font-size": 36,
+      "text-heading-1-letter-spacing": 7
+      },
+      "components": {
+        "Text": {
+          "meta": {
+            "scope": "all",
+            "parameters": {
+              "letterSpacing": {
+                "type": "number"
+              }
+            }
+          },
+          "appearances": {
+            "default": {
+              "mapping": {},
+              "variantGroups": {
+                "category": {
+                  "h1": {
+                    "letterSpacing": "text-heading-1-letter-spacing"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+}

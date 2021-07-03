@@ -69,6 +69,29 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>FuturaPT-Bold.ttf</string>
+		<string>FuturaPT-BoldObl.ttf</string>
+		<string>FuturaPT-Book.ttf</string>
+		<string>FuturaPT-BookObl.ttf</string>
+		<string>FuturaPT-Demi.ttf</string>
+		<string>FuturaPT-DemiObl.ttf</string>
+		<string>FuturaPT-ExtraBold.ttf</string>
+		<string>FuturaPT-ExtraBoldObl.ttf</string>
+		<string>FuturaPT-Heavy.ttf</string>
+		<string>FuturaPT-HeavyObl.ttf</string>
+		<string>FuturaPT-Light.ttf</string>
+		<string>FuturaPT-LightObl.ttf</string>
+		<string>FuturaPT-Medium.ttf</string>
+		<string>FuturaPT-MediumObl.ttf</string>
+		<string>FuturaPTCond-Bold.ttf</string>
+		<string>FuturaPTCond-BoldObl.ttf</string>
+		<string>FuturaPTCond-Book.ttf</string>
+		<string>FuturaPTCond-BookObl.ttf</string>
+		<string>FuturaPTCond-ExtraBold.ttf</string>
+		<string>FuturaPTCond-ExtraBoldObl.ttf</string>
+		<string>FuturaPTCond-Medium.ttf</string>
+		<string>FuturaPTCond-MediumObl.ttf</string>
+		<string>Raleway-Medium.ttf</string>
 	</array>
 </dict>
 </plist>
