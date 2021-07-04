@@ -28,6 +28,7 @@ function Routes () {
     
     return (
         <NavigationContainer>
+            {console.log('hi')}
             { user ? <AppStack/> : <AuthStack/>}
         </NavigationContainer>
     )
