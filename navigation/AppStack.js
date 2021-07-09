@@ -9,9 +9,8 @@ import {
 } from 'react-native-elements';
 
 import HomeScreen from '../screens/HomeScreen';
-import ListScreen from '../screens/ListScreen';
+import ListStack from './ListStack';
 import ScanScreen from '../screens/ScanScreen';
-import { rgb } from 'chalk';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +31,7 @@ function AppStack() {
           }
         }}/>
 
-        <Tab.Screen name="List" component = {ListScreen} options = {{
+        <Tab.Screen name="List" component = {ListStack} options = {{
           tabBarIcon: ({focused}) => {
             return <Icon name="create" type="ionicon" color = {focused ? "#7C4AF0" : "#b6c1cd"}/>
           }

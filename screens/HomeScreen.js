@@ -28,7 +28,7 @@ function HomeScreen() {
           onPress = {() => logout()}
           style={{marginLeft: 40}}>
           Log Out
-         </Button>
+        </Button>
 
       </Layout>
     </React.Fragment>

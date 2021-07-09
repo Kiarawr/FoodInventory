@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import firestore, { firebase } from '@react-native-firebase/firestore';
 
 export const AuthContext = createContext({});
 
@@ -23,6 +24,8 @@ export const AuthProvider = ({children}) => {
                     console.log(password);
                     try {
                         await auth().createUserWithEmailAndPassword(email , password);
+                        const currentUser = firebase.auth().currentUser;
+                        firestore().collection('users').doc(currentUser.uid).set({items : null});
                     }
                     catch (e) {
                         console.log(e);
