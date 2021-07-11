@@ -14,7 +14,7 @@ function ListScreen({navigation})
 
   useEffect(() => {
     const currentUser = firebase.auth().currentUser;
-    console.log(currentUser);
+  //  console.log(currentUser);
 
     const users = firestore()
       .collection('users').doc(currentUser.uid).onSnapshot(
@@ -23,12 +23,12 @@ function ListScreen({navigation})
       return () => users();
   }, []);
 
-  console.log(items);
+  //console.log(items);
 
   const displayPosts = ({item}) => (
     <ListItem 
       title={evaProps => <Text {...evaProps} style = {{fontSize:24}}>{item.name}</Text>}
-      description={evaProps => <Text {...evaProps}>PURCHASES</Text>}
+      description={evaProps => <Text {...evaProps}>APPROX NO. PER WEEK: {item.est_frequency}</Text>}
     />
 
   );
@@ -43,7 +43,7 @@ function ListScreen({navigation})
 
       <Pressable 
         style = {{marginRight:40, marginTop: 6}}
-        onPress = {() => navigation.navigate("AddScreen")}>
+        onPress = {() => navigation.navigate("AddScreen", {param: items})}>
           <Icon name = "add-circle-outline" type = "ionicon" size = {35} color = "white"></Icon>
       </Pressable>
 

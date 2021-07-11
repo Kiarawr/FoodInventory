@@ -5,45 +5,124 @@ import { Text, Layout, Input, Datepicker, Button} from '@ui-kitten/components';
 import firestore from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/firestore';
 
-
-
-function addItem(itemName, quantity, date) {
+function addItem(itemName, itemQuantity, itemDate, existingItems, {navigation}) {
 
     const currentUser = firebase.auth().currentUser;
-    //console.log(currentUser);
-    console.log("adding item");
 
-    //if item has been bought before, find entry in items array, add new entry to purchases array
+    // console.log(existingItems);
+    let exists = false;
+    let currentItem = null; 
 
-    //if item is new, add new entry to items array (create map), add new entry to purchases array
-    const newItem = new Map();
-    newItem.set('name', itemName);
-    newItem.set('est_frequency', 0);
+    existingItems.every(        // every() stops iterating when false is returned
+        item => {
+            // console.log(Object.values(item));
 
-    const newPurchase = new Map();
-    newPurchase.set('date', date);
-    newPurchase.set('quantity', quantity);
+            if (item.name == itemName) {
+                currentItem = item;
+                exists = true;
+                return false;           
+            }
+            else
+                return true;
 
-    const purchasesArr = [newPurchase];
-    newItem.set('purchases', purchasesArr);
+        }
+    )
+    
+    if (exists) {
 
-    console.log(newItem);
+        // add new purchase to current item
 
-    /*
-    firestore().collection('users').doc(currentUser.uid).update({
-        items: firestore.FieldValue.arrayUnion(newItem),
-    });
-    */
+        const newPurchase = {
+            date: itemDate,
+            quantity: itemQuantity
+        }
 
+        currentItem.purchases.push(newPurchase);
+
+        // create differences array 
+
+        let differences = [];
+        let purchases = currentItem.purchases;
+        // console.log(purchases);
+
+        for (let i = purchases.length-1; i > 0; i--){
+
+            let diffTime;
+
+            if (i == purchases.length - 1)
+                diffTime = ( purchases[i].date.getTime() / 1000 ) - purchases[i-1].date._seconds;  
+            else 
+                diffTime = purchases[i].date._seconds - purchases[i-1].date._seconds;
+
+            let diffDays = diffTime / (3600 * 24);
+            differences.push(diffDays / purchases[i-1].quantity);
+        }
+
+        console.log(differences);
+
+        // filter differences array 
+        // removes bottom 5% and top 5%
+
+        differences.sort(function(a, b){return b - a});
+        let low = Math.round(differences.length * 0.05);
+        let high = differences.length - low;
+        differences = differences.slice(low, high);
+
+        console.log("after filter");
+        console.log(differences);
+        
+        // calculate est_frequency
+        let sum = 0;
+        differences.forEach(
+            value => {
+                sum += value;
+            }
+        )
+
+        console.log(sum);
+
+        let amountPerWeek = ( 1 / ( sum / differences.length )) * 7 ;
+        currentItem.est_frequency = Math.round(amountPerWeek);
+
+        firestore().collection('users').doc(currentUser.uid).update({
+            items: existingItems,
+        });
+
+
+    }
+
+    // item is new, add new entry to items array (create map), 
+    // add new entry to purchases array
+    else {
+
+        const newItem = {
+            name: itemName, 
+            est_frequency: 0,
+            purchases: [
+                {
+                    date: itemDate,
+                    quantity: itemQuantity
+                }
+            ],
+        };
+        
+        firestore().collection('users').doc(currentUser.uid).update({
+            items: firestore.FieldValue.arrayUnion(newItem),
+        });
+
+    }
+
+    navigation.goBack();
+    
 }
 
 
-function AddScreen({navigation}) {
+function AddScreen({route, navigation}) {
 
     const [itemName, setItemName] = React.useState(null);
     const [quantity, setQuantity] = React.useState(null);
     const [date, setDate] = React.useState(null);
-
+    const existingItems = route.params['param'];
     return (
         <Layout style={{ flex: 1, justifyContent: 'center'}}>
     
@@ -82,7 +161,7 @@ function AddScreen({navigation}) {
             />
 
             <Button
-            onPress = {() => addItem(itemName, quantity, date)}
+            onPress = {() => addItem(itemName, quantity, date, existingItems, {navigation})}
             style={{marginLeft: 40, marginRight: 40, marginTop: 20}}>
             Add Item
             </Button>
