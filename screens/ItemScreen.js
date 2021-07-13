@@ -6,6 +6,7 @@ import { firebase } from '@react-native-firebase/firestore';
 import { AuthContext } from '../navigation/AuthProvider';
 import { List, ListItem, Text, Layout, Button } from '@ui-kitten/components';
 import { Divider } from 'react-native-elements/dist/divider/Divider';
+import { Alert } from 'react-native';
 
 
 function ListScreen({navigation}) 
@@ -25,10 +26,27 @@ function ListScreen({navigation})
 
   //console.log(items);
 
+  const renderItemAccessory = () => (
+
+    <Icon name = "chevron-forward-outline" type = "ionicon" size = {20} color = "white"
+    onPress = {() => console.log("hakshsjshsh")}
+    />
+
+  );
+
   const displayPosts = ({item}) => (
+
     <ListItem 
-      title={evaProps => <Text {...evaProps} style = {{fontSize:24}}>{item.name}</Text>}
-      description={evaProps => <Text {...evaProps}>APPROX NO. PER WEEK: {item.est_frequency}</Text>}
+      title = { evaProps => 
+        <Text {...evaProps} style = {{fontSize:24}}>
+          {item.name}
+        </Text>}
+      description = { evaProps => 
+        <Text {...evaProps}>
+          NEXT PURCHASE: {new Date (item.next_purchase_date._seconds * 1000).toLocaleDateString("en-US")} {"\n"}
+          AVG QUANTITY: {item.avg_quantity}
+        </Text>}
+      accessoryRight = {renderItemAccessory}
     />
 
   );

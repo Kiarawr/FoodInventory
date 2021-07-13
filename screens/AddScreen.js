@@ -4,8 +4,26 @@ import { Icon } from 'react-native-elements';
 import { Text, Layout, Input, Datepicker, Button} from '@ui-kitten/components';
 import firestore from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/firestore';
+import { Alert } from 'react-native';
 
 function addItem(itemName, itemQuantity, itemDate, existingItems, {navigation}) {
+
+    // check for valid input
+
+    if ( itemName == null || itemName.trim() === "" ) {
+        Alert.alert('Invalid Input', 'Please enter an item name');
+        return;
+    }
+    if ( itemQuantity == null || itemQuantity.trim() === "" || isNaN(Number(itemQuantity))) {
+        Alert.alert('Invalid Input', 'Please a numerical quantity');
+        return;
+    }
+    if ( itemDate == null ){
+        Alert.alert('Invalid Input', 'Please select a date');
+        return;
+    }
+
+    
 
     const currentUser = firebase.auth().currentUser;
 
@@ -33,30 +51,42 @@ function addItem(itemName, itemQuantity, itemDate, existingItems, {navigation}) 
         // add new purchase to current item
 
         const newPurchase = {
-            date: itemDate,
-            quantity: itemQuantity
+            date: firebase.firestore.Timestamp.fromDate(itemDate),
+            quantity: Number(itemQuantity)
         }
 
         currentItem.purchases.push(newPurchase);
 
-        // create differences array 
-
+        // initialize differences array
         let differences = [];
         let purchases = currentItem.purchases;
-        // console.log(purchases);
+
+        // initialize total quantity and avg quantity 
+        let totalQuantity = 0;
+        let avgQuantity = 0;
+
+        // sorts by date in ascending order
+        purchases.sort(function(a, b){                      
+            return a.date._seconds - b.date._seconds    
+        });
+        
+        console.log(purchases);
 
         for (let i = purchases.length-1; i > 0; i--){
 
-            let diffTime;
+            let diffInSeconds = purchases[i].date._seconds - purchases[i-1].date._seconds;
 
-            if (i == purchases.length - 1)
-                diffTime = ( purchases[i].date.getTime() / 1000 ) - purchases[i-1].date._seconds;  
-            else 
-                diffTime = purchases[i].date._seconds - purchases[i-1].date._seconds;
+            let diffInDays = diffInSeconds / (3600 * 24);
+            differences.push(diffInDays / purchases[i-1].quantity);
 
-            let diffDays = diffTime / (3600 * 24);
-            differences.push(diffDays / purchases[i-1].quantity);
+            totalQuantity += purchases[i].quantity;
         }
+
+        totalQuantity += purchases[0].quantity;
+        avgQuantity = totalQuantity / purchases.length;
+        console.log("total quantity: " + totalQuantity);
+        console.log("average quantity: " + Math.round(avgQuantity));
+        currentItem.avg_quantity = Math.round(avgQuantity);
 
         console.log(differences);
 
@@ -72,18 +102,24 @@ function addItem(itemName, itemQuantity, itemDate, existingItems, {navigation}) 
         console.log(differences);
         
         // calculate est_frequency
-        let sum = 0;
+        let avgDays = 0;
         differences.forEach(
             value => {
-                sum += value;
+                avgDays += value;
             }
         )
 
-        console.log(sum);
+        console.log(avgDays);
 
-        let amountPerWeek = ( 1 / ( sum / differences.length )) * 7 ;
+        let amountPerWeek = ( 1 / ( avgDays / differences.length )) * 7 ;
         currentItem.est_frequency = Math.round(amountPerWeek);
 
+        // calculate next purchase date
+        let avgSeconds = avgDays * 3600 * 24;
+        let nextDateInSeconds = (avgSeconds * purchases[purchases.length-1].quantity) + purchases[purchases.length-1].date._seconds;
+        currentItem.next_purchase_date = new firebase.firestore.Timestamp( nextDateInSeconds, 0);
+
+        // update database
         firestore().collection('users').doc(currentUser.uid).update({
             items: existingItems,
         });
@@ -98,10 +134,12 @@ function addItem(itemName, itemQuantity, itemDate, existingItems, {navigation}) 
         const newItem = {
             name: itemName, 
             est_frequency: 0,
+            avg_quantity: Number(itemQuantity),
+            next_purchase_date: "n/a",
             purchases: [
                 {
-                    date: itemDate,
-                    quantity: itemQuantity
+                    date: firebase.firestore.Timestamp.fromDate(itemDate),
+                    quantity: Number(itemQuantity)
                 }
             ],
         };
@@ -151,6 +189,7 @@ function AddScreen({route, navigation}) {
                 placeholder = "Enter the quantity purchased"
                 value = {quantity}
                 onChangeText = {nextValue => setQuantity(nextValue)}
+                keyboardType = "numeric"
             />
 
             <Datepicker style = {{marginLeft: 40, marginRight: 40, marginBottom: 15}}
