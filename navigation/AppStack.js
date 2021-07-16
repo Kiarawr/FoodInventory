@@ -15,7 +15,6 @@ import ScanScreen from '../screens/ScanScreen';
 const Tab = createBottomTabNavigator();
 
 function AppStack() {
-  console.log("app stack");
     return(
       <React.Fragment>
        <StatusBar barStyle="light-content" backgroundColor="#121212"/>

@@ -9,55 +9,33 @@ import { firebase } from '@react-native-firebase/firestore';
 function HomeScreen() {
   const { logout } = useContext(AuthContext);
   const [date, setDate] = React.useState(new Date());
-  // const [shopDates, setShopDates] = useState([]);
+  const [shopDates, setShopDates] = useState([]);
   const [items, setItems] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const currentUser = firebase.auth().currentUser;
-    
-  //  console.log(currentUser);
-
-    const users = firestore().collection('users').doc(currentUser.uid).onSnapshot(
-    user => {setItems(user.data()['items'])});
-
-    // let temp = [];
-    items.forEach(
+    let temp = []
+    const users = firestore().collection('users').doc(currentUser.uid).get()
+    .then((user) => {user.data()['items'].forEach(
       item => {
-        let day = new Date (item.next_purchase_date._seconds * 1000);
-        shopDates.push(day.getDate());
-        console.log(shopDates)
-        // setShopDates(shopDates);
+        let day = new Date (item.next_purchase_date._seconds * 1000).getTime();
+        temp.push(day);
+        setShopDates(temp);
       }
-    )
-
-    console.log("shop dates" + shopDates[0]);
-    
-
-    return () => users();
+    )});
   }, []);
 
   const DayCell  = ({ date }, style ) => (
-
     <View
-      style={[styles.dayContainer, style.container]}>
+      style={[styles.dayContainer, style.container]}> 
       <Text style={styles.text}>{`${date.getDate()}`}</Text>
   
-      <Text style={[styles.text, style.value]}>
-        {`${shopDates}`}
+      <Text>
+      { shopDates.includes(date.getTime()) ? <Text style={[style.text, styles.value]}> yes </Text> : <Text> no </Text>  }
       </Text>
-  
-      {/* <Text style={[style.text, styles.value]}>
-        {`${100 * date.getDate() + Math.pow(date.getDate(), 2)}$`}
-      </Text> */}
-
     </View>
     
   );
-
-  
-
-  // console.log(shopDates);
-
 
   return (
     <React.Fragment>
@@ -66,6 +44,8 @@ function HomeScreen() {
         <Text category='h1' style={{marginLeft: 40}}>
               Overview
         </Text>
+
+        
 
         <Calendar
           style={{alignSelf: 'center'}}
