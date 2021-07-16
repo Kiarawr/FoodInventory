@@ -4,6 +4,8 @@
         "Swipeable",
         "firestore",
         "helvetica",
-        "ionicon"
+        "ionicon",
+        "mobilenet",
+        "tflite"
     ]
 }

@@ -41,7 +41,7 @@ function SignUpScreen({navigation}) {
 
                 <FormInput 
                     labelValue={confirmPassword}
-                    onChangeText = {(userPassword) => setConfirmPassword(userPassword)}
+                    onChangeText = {(userConfirmPassword) => setConfirmPassword(userConfirmPassword)}
                     placeholderText = "confirm password"
                     iconType = "lock-closed"       //change
                     autoCapitalize = "none"
@@ -50,7 +50,7 @@ function SignUpScreen({navigation}) {
 
                 <Button 
                     style = {styles.button}
-                    onPress = {() => register(email, password)}>
+                    onPress = {() => register(email, password, confirmPassword)}>
                     <Text style = {styles.buttonText}>Sign Up</Text>
                 </Button>
 
