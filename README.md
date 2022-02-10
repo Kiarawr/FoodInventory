@@ -14,7 +14,7 @@ Todo:
 # Features
 
 User Authentication 
-![image](https://user-images.githubusercontent.com/46658332/153329979-b898dfe9-2c76-42eb-a4e7-2049ea669eb6.png)
+![image](https://user-images.githubusercontent.com/46658332/153329979-b898dfe9-2c76-42eb-a4e7-2049ea669eb6.png | width=100)
 ![image](https://user-images.githubusercontent.com/46658332/153330002-cf860fb2-b66b-4938-a36a-0e6ae6591e7a.png)
 ![image](https://user-images.githubusercontent.com/46658332/153330049-ff160e11-10dc-47a9-93f3-303830442d2d.png)
 
