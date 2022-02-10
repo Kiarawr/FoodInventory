@@ -15,8 +15,8 @@ Todo:
 
 ## User Authentication 
 <center><img src="https://user-images.githubusercontent.com/46658332/153329979-b898dfe9-2c76-42eb-a4e7-2049ea669eb6.png" width="200"></center>
-<center><img src="https://user-images.githubusercontent.com/46658332/153330002-cf860fb2-b66b-4938-a36a-0e6ae6591e7a.png" width="200"></center>
-<center><img src="https://user-images.githubusercontent.com/46658332/153330049-ff160e11-10dc-47a9-93f3-303830442d2d.png" width="200"></center>
+<img src="https://user-images.githubusercontent.com/46658332/153330002-cf860fb2-b66b-4938-a36a-0e6ae6591e7a.png" width="200">
+<img src="https://user-images.githubusercontent.com/46658332/153330049-ff160e11-10dc-47a9-93f3-303830442d2d.png" width="200">
 
 ## Home
 - Calender displays reminders to purchase items
@@ -25,10 +25,7 @@ Todo:
 ## List Page
 - Displays a list of different purchased items, the average amount purchased per grocery-run, and the predicted next purchase date
 <center><img src="https://user-images.githubusercontent.com/46658332/153330116-bec2ae6d-53ff-4222-98b9-c22d5e2df9b9.png" width="200"></center>
-
-## Adding an Item
-- Record purchased items
-<center><img src="https://user-images.githubusercontent.com/46658332/153330240-5556f64b-cd9b-4a4e-a29a-ded717db640a.png" width="200"></center>
+<img src="https://user-images.githubusercontent.com/46658332/153330240-5556f64b-cd9b-4a4e-a29a-ded717db640a.png" width="200">
 
 ## Scan Page - In progress
 - Currently uses [react-native-camera-tflite](https://www.npmjs.com/package/react-native-camera-tflite) for general image classification
